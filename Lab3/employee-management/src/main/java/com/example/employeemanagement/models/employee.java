@@ -1,16 +1,29 @@
 package com.example.employeemanagement.models;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 public class employee {
     private int id;
-    private String first_Name;
-    private String last_Name;
+
+    @NotBlank(message = "First name should not be empty or blank")
+    @Size(min = 5, max = 20, message = "First name must be between 5 and 20 characters")
+    private String firstName;
+
+    @NotBlank(message = "Last name should not be empty")
+    private String lastName;
+
+    @NotBlank(message = "Email should not be empty")
+    @Email(message = "Email should be valid")
     private String email;
 
     public employee() {}
-    public employee(int id, String first_Name, String last_Name, String email) {
+
+    public employee(int id, String firstName, String lastName, String email) {
         this.id = id;
-        this.first_Name = first_Name;
-        this.last_Name = last_Name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
     }
 
@@ -22,20 +35,21 @@ public class employee {
         this.id = id;
     }
 
-    public String getFirst_Name() {
-        return first_Name;
+    // Use camelCase for fields to ensure consistency and validation works as expected
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_Name(String first_Name) {
-        this.first_Name = first_Name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_Name() {
-        return last_Name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_Name(String last_Name) {
-        this.last_Name = last_Name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -46,6 +60,3 @@ public class employee {
         this.email = email;
     }
 }
-
-
-
